@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Abduaziz Oblayorov — Portfolio</title>
+    <style>
+        :root {
+            --bg: #fafaf7;
+            --bg2: #f0efe9;
+            --card: #fff;
+            --tx: #1b1b1f;
+            --mu: #62626b;
+            --ac: #5b4bff;
+            --ac2: #ff7a45;
+            --bd: #e3e2db;
+            color-scheme: light;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        @media(prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #101014;
+                --bg2: #17171d;
+                --card: #1c1c24;
+                --tx: #f1f1f4;
+                --mu: #a0a0ad;
+                --ac: #8f84ff;
+                --ac2: #ff9366;
+                --bd: #2c2c37;
+                color-scheme: dark
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #101014;
+            --bg2: #17171d;
+            --card: #1c1c24;
+            --tx: #f1f1f4;
+            --mu: #a0a0ad;
+            --ac: #8f84ff;
+            --ac2: #ff9366;
+            --bd: #2c2c37;
+            color-scheme: dark
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(70px + env(safe-area-inset-top, 0px))
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--tx);
+            font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.15;
+            margin: 0 0 .5em;
+            font-family: Georgia, "Times New Roman", serif
+        }
+
+        a {
+            color: var(--ac)
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0 0 auto;
+            height: env(safe-area-inset-top, 0px);
+            background: var(--bg);
+            z-index: 60
+        }
+
+        #bar {
+            position: fixed;
+            top: env(safe-area-inset-top, 0px);
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--ac), var(--ac2));
+            width: 0;
+            z-index: 70
+        }
+
+        nav {
+            position: sticky;
+            top: env(safe-area-inset-top, 0px);
+            z-index: 50;
+            background: color-mix(in srgb, var(--bg) 88%, transparent);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--bd)
+        }
+
+        .nv {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px
+        }
+
+        .logo {
+            font: 700 20px Georgia, serif;
+            margin-right: auto;
+            color: var(--tx);
+            text-decoration: none
+        }
+
+        .links {
+            display: flex;
+            gap: 2px;
+            overflow-x: auto;
+            scrollbar-width: none
+        }
+
+        .links a {
+            padding: 6px 10px;
+            border-radius: 99px;
+            text-decoration: none;
+            color: var(--mu);
+            font-size: 14px;
+            white-space: nowrap
+        }
+
+        .links a.on {
+            background: var(--ac);
+            color: #fff
+        }
+
+        .ib {
+            border: 1px solid var(--bd);
+            background: var(--card);
+            color: var(--tx);
+            border-radius: 99px;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            font-size: 16px;
+            flex: none
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 72px 18px
+        }
+
+        section.alt {
+            max-width: none;
+            background: var(--bg2)
+        }
+
+        section.alt>.in {
+            max-width: 1100px;
+            margin: auto
+        }
+
+        .tag {
+            color: var(--ac);
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: .12em;
+            text-transform: uppercase
+        }
+
+        h2 {
+            font-size: clamp(28px, 4vw, 40px)
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 36px;
+            align-items: center;
+            min-height: 80vh
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 6vw, 68px)
+        }
+
+        .hero h1 span {
+            color: var(--ac)
+        }
+
+        .typ {
+            font-size: 20px;
+            color: var(--mu);
+            min-height: 32px
+        }
+
+        .typ b {
+            color: var(--ac2)
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 11px 20px;
+            border-radius: 99px;
+            border: 1px solid var(--ac);
+            background: var(--ac);
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            font: 600 15px system-ui;
+            margin: 6px 8px 0 0
+        }
+
+        .btn.o {
+            background: none;
+            color: var(--ac)
+        }
+
+        .av {
+            aspect-ratio: 1;
+            border-radius: 36% 64% 55% 45%/45% 40% 60% 55%;
+            background: linear-gradient(135deg, var(--ac), var(--ac2));
+            display: grid;
+            place-items: center;
+            font: 700 92px Georgia, serif;
+            color: #fff;
+            max-width: 340px;
+            margin: auto;
+            width: 100%
+        }
+
+        .grid {
+            display: grid;
+            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--bd);
+            border-radius: 16px;
+            padding: 22px
+        }
+
+        .card p {
+            color: var(--mu);
+            margin: .3em 0 0
+        }
+
+        .ico {
+            font-size: 28px
+        }
+
+        .stat {
+            text-align: center
+        }
+
+        .stat b {
+            display: block;
+            font: 700 42px Georgia, serif;
+            color: var(--ac)
+        }
+
+        .sk {
+            margin: 14px 0
+        }
+
+        .sk div {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 5px
+        }
+
+        .trk {
+            height: 9px;
+            background: var(--bd);
+            border-radius: 9px;
+            overflow: hidden
+        }
+
+        .fill {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--ac), var(--ac2));
+            border-radius: 9px;
+            transition: width 1.2s ease
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 22px
+        }
+
+        .chip {
+            border: 1px solid var(--bd);
+            background: var(--card);
+            color: var(--tx);
+            padding: 7px 15px;
+            border-radius: 99px;
+            cursor: pointer;
+            font-size: 14px
+        }
+
+        .chip.on {
+            background: var(--tx);
+            color: var(--bg)
+        }
+
+        .pj {
+            cursor: pointer;
+            transition: transform .2s
+        }
+
+        .pj:hover {
+            transform: translateY(-4px)
+        }
+
+        .pj .th {
+            height: 120px;
+            border-radius: 10px;
+            margin-bottom: 14px;
+            display: grid;
+            place-items: center;
+            font-size: 42px
+        }
+
+        .tl {
+            border-left: 2px solid var(--bd);
+            margin-left: 8px
+        }
+
+        .tl .it {
+            position: relative;
+            padding: 0 0 26px 24px
+        }
+
+        .tl .it::before {
+            content: "";
+            position: absolute;
+            left: -7px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--ac)
+        }
+
+        .tl small {
+            color: var(--ac2);
+            font-weight: 600
+        }
+
+        .tm {
+            min-height: 150px;
+            text-align: center;
+            font: italic 22px/1.5 Georgia, serif;
+            max-width: 720px;
+            margin: auto
+        }
+
+        .tm small {
+            display: block;
+            margin-top: 12px;
+            font: 600 14px system-ui;
+            font-style: normal;
+            color: var(--mu)
+        }
+
+        .dots {
+            text-align: center;
+            margin-top: 16px
+        }
+
+        .dots i {
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--bd);
+            margin: 0 4px;
+            cursor: pointer
+        }
+
+        .dots i.on {
+            background: var(--ac)
+        }
+
+        details {
+            background: var(--card);
+            border: 1px solid var(--bd);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 10px
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 600
+        }
+
+        details p {
+            color: var(--mu);
+            margin: .6em 0 0
+        }
+
+        form {
+            display: grid;
+            gap: 12px;
+            max-width: 560px
+        }
+
+        input,
+        textarea,
+        select {
+            font: inherit;
+            padding: 11px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--bd);
+            background: var(--card);
+            color: var(--tx);
+            width: 100%
+        }
+
+        .err {
+            color: #d64545;
+            font-size: 13px;
+            min-height: 16px
+        }
+
+        .ok {
+            color: #1f9d55;
+            font-weight: 600
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 18px calc(30px + 70px);
+            color: var(--mu);
+            border-top: 1px solid var(--bd)
+        }
+
+        .rv {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all .7s
+        }
+
+        .rv.in {
+            opacity: 1;
+            transform: none
+        }
+
+        #top {
+            position: fixed;
+            right: 18px;
+            bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+            display: none
+        }
+
+        #fab {
+            position: fixed;
+            right: 18px;
+            bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            border: 0;
+            background: linear-gradient(135deg, var(--ac), var(--ac2));
+            color: #fff;
+            font-size: 26px;
+            cursor: pointer;
+            z-index: 80;
+            box-shadow: 0 8px 24px #0004
+        }
+
+        #chat {
+            position: fixed;
+            right: 18px;
+            bottom: calc(86px + env(safe-area-inset-bottom, 0px));
+            width: min(380px, calc(100vw - 36px));
+            height: min(520px, 70vh);
+            background: var(--card);
+            border: 1px solid var(--bd);
+            border-radius: 18px;
+            display: none;
+            flex-direction: column;
+            z-index: 80;
+            box-shadow: 0 18px 50px #0005;
+            overflow: hidden
+        }
+
+        #chat.open {
+            display: flex
+        }
+
+        #chat header {
+            padding: 14px 16px;
+            background: linear-gradient(135deg, var(--ac), var(--ac2));
+            color: #fff;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between
+        }
+
+        #msgs {
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px
+        }
+
+        .m {
+            max-width: 85%;
+            padding: 9px 13px;
+            border-radius: 14px;
+            font-size: 14.5px;
+            white-space: pre-wrap
+        }
+
+        .m.b {
+            background: var(--bg2);
+            align-self: flex-start
+        }
+
+        .m.u {
+            background: var(--ac);
+            color: #fff;
+            align-self: flex-end
+        }
+
+        .sg {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            padding: 0 14px 8px
+        }
+
+        .sg button {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 99px;
+            border: 1px solid var(--bd);
+            background: none;
+            color: var(--tx);
+            cursor: pointer
+        }
+
+        #cf {
+            display: flex;
+            gap: 8px;
+            padding: 10px;
+            border-top: 1px solid var(--bd)
+        }
+
+        #mod {
+            position: fixed;
+            inset: 0;
+            background: #000a;
+            display: none;
+            place-items: center;
+            z-index: 90;
+            padding: 18px
+        }
+
+        #mod.open {
+            display: grid
+        }
+
+        #mod .card {
+            max-width: 520px;
+            width: 100%
+        }
+
+        @media(max-width:760px) {
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                padding-top: 30px
+            }
+
+            .av {
+                max-width: 200px;
+                font-size: 60px
+            }
+
+            section {
+                padding: 52px 16px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="bar"></div>
+    <nav>
+        <div class="nv"><a class="logo" href="#home">AO.</a>
+            <div class="links" id="links"></div>
+            <button class="ib" id="th" title="Mavzu" aria-label="Mavzu">🌓</button>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div>
+            <span class="tag">Salom, men Abduaziz 👋</span>
+            <h1>Men <span>raqamli mahsulotlar</span> yarataman</h1>
+            <div class="typ">Men — <b id="typ"></b><span>|</span></div>
+            <p style="color:var(--mu);max-width:520px">Toshkentdagi full-stack dasturchi va dizayner. G‘oyani chiroyli,
+                tez va foydalanuvchiga qulay mahsulotga aylantiraman.</p>
+            <a class="btn" href="#contact">Bog‘lanish</a><a class="btn o" href="#projects">Ishlarim</a><button
+                class="btn o" id="cv">⬇ CV yuklab olish</button>
+        </div>
+        <div class="av">AO</div>
+    </section>
+
+    <section id="about"><span class="tag">Men haqimda</span>
+        <h2>Kod va dizayn kesishgan joyda</h2>
+        <div class="grid" style="grid-template-columns:2fr 1fr">
+            <div>
+                <p>Men 6 yildan beri veb va mobil ilovalar yarataman. Startaplardan tortib yirik kompaniyalargacha
+                    ishlaganman. Mening kuchim — murakkab muammolarni sodda yechimlarga aylantirish.</p>
+                <p>Bo‘sh vaqtimda ochiq kodli loyihalarga hissa qo‘shaman, mentorlik qilaman va yangi texnologiyalarni
+                    sinab ko‘raman.</p>
+                <p>📍 Toshkent, O‘zbekiston &nbsp; 🌐 Uz / Ru / En &nbsp; ✅ Frilans uchun ochiq</p>
+            </div>
+            <div class="card">
+                <h3>Tezkor faktlar</h3>
+                <p>☕ Kuniga 4 chashka choy<br>🎯 Mukammallikka intilaman<br>🚀 Doim o‘rganaman<br>🎮 Shaxmat va gitara
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt" id="stats">
+        <div class="in">
+            <div class="grid" id="stats-g"></div>
+        </div>
+    </section>
+
+    <section id="skills"><span class="tag">Ko‘nikmalar</span>
+        <h2>Nimalarni bilaman</h2>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+            <div id="sk1"></div>
+            <div id="sk2"></div>
+        </div>
+    </section>
+
+    <section class="alt" id="services">
+        <div class="in"><span class="tag">Xizmatlar</span>
+            <h2>Qanday yordam bera olaman</h2>
+            <div class="grid" id="svc"></div>
+        </div>
+    </section>
+
+    <section id="projects"><span class="tag">Loyihalar</span>
+        <h2>Tanlangan ishlar</h2>
+        <div class="chips" id="chips"></div>
+        <div class="grid" id="pj"></div>
+    </section>
+
+    <section class="alt" id="experience">
+        <div class="in"><span class="tag">Tajriba</span>
+            <h2>Ish yo‘lim</h2>
+            <div class="tl" id="exp"></div>
+        </div>
+    </section>
+
+    <section id="education"><span class="tag">Ta’lim</span>
+        <h2>Ta’lim va sertifikatlar</h2>
+        <div class="grid" id="edu"></div>
+    </section>
+
+    <section class="alt" id="process">
+        <div class="in"><span class="tag">Jarayon</span>
+            <h2>Qanday ishlayman</h2>
+            <div class="grid" id="proc"></div>
+        </div>
+    </section>
+
+    <section id="reviews"><span class="tag">Fikrlar</span>
+        <h2>Mijozlar nima deydi</h2>
+        <div class="tm" id="tm"></div>
+        <div class="dots" id="dots"></div>
+    </section>
+
+    <section class="alt" id="blog">
+        <div class="in"><span class="tag">Blog</span>
+            <h2>So‘nggi maqolalar</h2>
+            <div class="grid" id="bl"></div>
+        </div>
+    </section>
+
+    <section id="pricing"><span class="tag">Narxlar</span>
+        <h2>Hamkorlik paketlari</h2>
+        <div class="grid" id="pr"></div>
+    </section>
+
+    <section class="alt" id="faq">
+        <div class="in" style="max-width:760px"><span class="tag">FAQ</span>
+            <h2>Ko‘p so‘raladigan savollar</h2>
+            <div id="fq"></div>
+        </div>
+    </section>
+
+    <section id="contact"><span class="tag">Aloqa</span>
+        <h2>Keling, birga ishlaymiz</h2>
+        <div class="grid" style="grid-template-columns:1fr 1fr">
+            <form id="f" novalidate>
+                <input id="fn" placeholder="Ismingiz">
+                <div class="err" id="e1"></div>
+                <input id="fe" type="email" placeholder="Email">
+                <div class="err" id="e2"></div>
+                <select id="ft">
+                    <option>Veb-sayt</option>
+                    <option>Mobil ilova</option>
+                    <option>UI/UX dizayn</option>
+                    <option>Boshqa</option>
+                </select>
+                <textarea id="fm" rows="4" placeholder="Xabaringiz"></textarea>
+                <div class="err" id="e3"></div>
+                <button class="btn" type="submit">Yuborish →</button>
+                <div id="fs"></div>
+            </form>
+            <div class="card">
+                <h3>Aloqa ma’lumotlari</h3>
+                <p>📧 aziz@example.com<br>📱 +998 90 123 45 67<br>✈️ t.me/azizk<br>💼 linkedin.com/in/azizk<br>🐙
+                    github.com/azizk</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>© 2026 Abduaziz Oblayorov · Muhabbat bilan Toshkentda yaratilgan ❤️</footer>
+
+    <button class="ib" id="top" aria-label="Yuqoriga">↑</button>
+    <button id="fab" aria-label="AI yordamchi">🤖</button>
+    <div id="chat">
+        <header><span>🤖 AI yordamchi</span><span id="cx" style="cursor:pointer">✕</span></header>
+        <div id="msgs"></div>
+        <div class="sg" id="sg"></div>
+        <div id="cf"><input id="ci" placeholder="Savol bering..."><button class="btn" id="cs"
+                style="margin:0">➤</button></div>
+    </div>
+    <div id="mod">
+        <div class="card">
+            <div id="mc"></div><button class="btn" id="mx">Yopish</button>
+        </div>
+    </div>
+
+    <script>
+        const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+        const D = {
+            nav: [["home", "Bosh"], ["about", "Haqida"], ["skills", "Skills"], ["services", "Xizmat"], ["projects", "Ishlar"], ["experience", "Tajriba"], ["education", "Ta’lim"], ["reviews", "Fikrlar"], ["blog", "Blog"], ["pricing", "Narx"], ["faq", "FAQ"], ["contact", "Aloqa"]],
+            roles: ["full-stack dasturchi", "UI/UX dizayner", "AI ixlosmandi", "mentor"],
+            stats: [[6, "Yil tajriba"], [48, "Loyiha"], [32, "Mijoz"], [12, "Mukofot"]],
+            sk1: [["JavaScript / TypeScript", 95], ["React / Next.js", 92], ["Node.js", 88], ["Python", 80]],
+            sk2: [["Figma / UI dizayn", 90], ["PostgreSQL / MongoDB", 84], ["Docker / CI-CD", 78], ["AI / LLM integratsiya", 82]],
+            svc: [["🌐", "Veb-ishlab chiqish", "Tez, xavfsiz va SEO-ga mos saytlar."], ["📱", "Mobil ilovalar", "iOS va Android uchun React Native."], ["🎨", "UI/UX dizayn", "Foydalanuvchi o‘ylab topilgan interfeys."], ["🤖", "AI yechimlar", "Chatbot va avtomatlashtirish."], ["☁️", "Cloud / DevOps", "Deploy, monitoring, masshtablash."], ["📈", "Maslahat", "Texnik audit va mentorlik."]],
+            pj: [["web", "🛒", "E-commerce platforma", "Next.js · Stripe", "Oyiga 20 000 buyurtma qayta ishlaydigan onlayn do‘kon."], ["app", "📱", "Fitness ilova", "React Native", "100k+ yuklab olingan mashq trekeri."], ["ai", "🤖", "AI mijozlar xizmati", "Python · LLM", "Murojaatlarning 70% ini avtomatik hal qiluvchi bot."], ["design", "🎨", "Bank ilovasi dizayni", "Figma", "To‘liq UI-kit va 120+ ekran."], ["web", "📊", "Analitika paneli", "React · D3", "Real vaqtli biznes ko‘rsatkichlari."], ["ai", "🧠", "Hujjat tahlilchisi", "OCR · NLP", "PDF-lardan ma’lumot ajratib oladi."], ["app", "🚕", "Taksi ilovasi", "Flutter", "Haydovchi va yo‘lovchi uchun ilova."], ["design", "🏷️", "Brend identika", "Illustrator", "Startap uchun logo va brendbuk."]],
+            exp: [["2024 — hozir", "Senior Developer · TechUz", "Jamoani boshqarish, arxitektura, 12 kishilik jamoa."], ["2022 — 2024", "Full-stack Developer · Startup Hub", "5 ta mahsulotni noldan ishga tushirdim."], ["2020 — 2022", "Frontend Developer · WebStudio", "30+ mijoz saytlari ustida ishladim."], ["2019 — 2020", "Intern · Digital Lab", "Birinchi professional tajriba."]],
+            edu: [["🎓", "TATU — Bakalavr", "Dasturiy injiniring, 2016–2020"], ["📜", "Google UX Certificate", "2021"], ["📜", "AWS Cloud Practitioner", "2022"], ["📜", "DeepLearning.AI — LLM kursi", "2025"]],
+            proc: [["1", "Tushunish", "Maqsad va auditoriyani aniqlaymiz."], ["2", "Rejalash", "Yo‘l xaritasi va prototip."], ["3", "Yaratish", "Haftalik demo bilan ishlab chiqish."], ["4", "Sinash", "Avtotest va foydalanuvchi testi."], ["5", "Ishga tushirish", "Deploy va qo‘llab-quvvatlash."]],
+            tm: [["Abduaziz bilan ishlash juda oson bo‘ldi — hammasi vaqtida va a’lo sifatda.", "Dilnoza R., CEO"], ["Bizning ilova reytingi 3.9 dan 4.8 gacha ko‘tarildi.", "Jasur M., Mahsulot rahbari"], ["Professional, ijodkor va ishonchli hamkor.", "Sarah L., Startap asoschisi"]],
+            bl: [["Mar 2026", "React-da tezlikni 2x oshirish", "6 daqiqa"], ["Fev 2026", "LLM-larni mahsulotga integratsiya qilish", "9 daqiqa"], ["Yan 2026", "Frilanserlar uchun narx belgilash", "5 daqiqa"]],
+            pr: [["Start", "$500", "Landing sahifa, 1 hafta, 1 marta tahrir", 0], ["Pro", "$1 800", "Ko‘p sahifali sayt + admin panel", 1], ["Biznes", "$4 500+", "Maxsus ilova, AI, qo‘llab-quvvatlash", 0]],
+            fq: [["Loyiha qancha vaqt oladi?", "Landing 1 hafta, to‘liq sayt 3–6 hafta, ilova 2–4 oy."], ["To‘lov qanday?", "50% oldindan, 50% topshirishda. Uzum, Payme va xalqaro o‘tkazma."], ["Qo‘llab-quvvatlash bormi?", "Ha, har bir loyihaga 30 kunlik bepul yordam."], ["Chet eldagi mijozlar bilan ishlaysizmi?", "Ha, ingliz va rus tillarida erkin muloqot qilaman."]]
+        };
+        const L = D.nav.map(([i, t]) => `<a href="#${i}">${t}</a>`).join(""); $("#links").innerHTML = L;
+        $("#stats-g").innerHTML = D.stats.map(([n, t]) => `<div class="card stat"><b data-n="${n}">0</b>${t}</div>`).join("");
+        const sk = a => a.map(([n, v]) => `<div class="sk"><div><span>${n}</span><span>${v}%</span></div><div class="trk"><div class="fill" data-w="${v}"></div></div></div>`).join("");
+        $("#sk1").innerHTML = sk(D.sk1); $("#sk2").innerHTML = sk(D.sk2);
+        $("#svc").innerHTML = D.svc.map(([i, t, p]) => `<div class="card rv"><div class="ico">${i}</div><h3>${t}</h3><p>${p}</p></div>`).join("");
+        const cats = { all: "Hammasi", web: "Veb", app: "Mobil", ai: "AI", design: "Dizayn" };
+        $("#chips").innerHTML = Object.entries(cats).map(([k, v]) => `<button class="chip${k == "all" ? " on" : ""}" data-c="${k}">${v}</button>`).join("");
+        function rp(c) { $("#pj").innerHTML = D.pj.map((p, i) => (c == "all" || p[0] == c) ? `<div class="card pj" data-i="${i}"><div class="th" style="background:linear-gradient(135deg,var(--bg2),var(--bd))">${p[1]}</div><h3>${p[2]}</h3><small style="color:var(--ac)">${p[3]}</small><p>${p[4]}</p></div>` : "").join("") } rp("all");
+        $("#chips").onclick = e => { const c = e.target.dataset.c; if (!c) return; $$(".chip").forEach(x => x.classList.toggle("on", x == e.target)); rp(c) };
+        $("#pj").onclick = e => { const c = e.target.closest(".pj"); if (!c) return; const p = D.pj[c.dataset.i]; $("#mc").innerHTML = `<div class="ico">${p[1]}</div><h3>${p[2]}</h3><p><b>Texnologiyalar:</b> ${p[3]}</p><p>${p[4]}</p>`; $("#mod").classList.add("open") };
+        $("#mx").onclick = () => $("#mod").classList.remove("open"); $("#mod").onclick = e => { if (e.target.id == "mod") e.target.classList.remove("open") };
+        $("#exp").innerHTML = D.exp.map(([d, t, p]) => `<div class="it"><small>${d}</small><h3>${t}</h3><p style="color:var(--mu);margin:0">${p}</p></div>`).join("");
+        $("#edu").innerHTML = D.edu.map(([i, t, p]) => `<div class="card"><div class="ico">${i}</div><h3>${t}</h3><p>${p}</p></div>`).join("");
+        $("#proc").innerHTML = D.proc.map(([n, t, p]) => `<div class="card"><div class="ico" style="color:var(--ac)">${n}</div><h3>${t}</h3><p>${p}</p></div>`).join("");
+        $("#bl").innerHTML = D.bl.map(([d, t, r]) => `<div class="card"><small style="color:var(--ac2)">${d} · ${r}</small><h3>${t}</h3><p>Batafsil o‘qish →</p></div>`).join("");
+        $("#pr").innerHTML = D.pr.map(([n, p, d, h]) => `<div class="card" style="${h ? "border-color:var(--ac);border-width:2px" : ""}"><h3>${n}</h3><div style="font:700 34px Georgia;color:var(--ac)">${p}</div><p>${d}</p><a class="btn${h ? "" : " o"}" href="#contact">Tanlash</a></div>`).join("");
+        $("#fq").innerHTML = D.fq.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join("");
+        // typing
+        let ri = 0, ci = 0, del = 0; (function t() { const r = D.roles[ri]; ci += del ? -1 : 1; $("#typ").textContent = r.slice(0, ci); let s = del ? 40 : 90; if (!del && ci == r.length) { del = 1; s = 1400 } else if (del && ci == 0) { del = 0; ri = (ri + 1) % D.roles.length; s = 300 } setTimeout(t, s) })();
+        // testimonials
+        let ti = 0; function tm(i) { ti = i; const [q, a] = D.tm[i]; $("#tm").innerHTML = `“${q}”<small>— ${a}</small>`; $("#dots").innerHTML = D.tm.map((_, j) => `<i class="${j == i ? "on" : ""}" data-j="${j}"></i>`).join("") } tm(0);
+        $("#dots").onclick = e => { if (e.target.dataset.j) tm(+e.target.dataset.j) }; setInterval(() => tm((ti + 1) % D.tm.length), 6000);
+        // theme
+        $("#th").onclick = () => { const r = document.documentElement, d = r.dataset.theme ? r.dataset.theme == "dark" : matchMedia("(prefers-color-scheme:dark)").matches; r.dataset.theme = d ? "light" : "dark" };
+        // scroll
+        const secs = $$("section[id]"), as = $$("#links a");
+        addEventListener("scroll", () => { const h = document.documentElement, y = scrollY; $("#bar").style.width = y / (h.scrollHeight - innerHeight) * 100 + "%"; $("#top").style.display = y > 600 ? "block" : "none"; let c = "home"; secs.forEach(s => { if (s.offsetTop - 120 <= y) c = s.id }); as.forEach(a => a.classList.toggle("on", a.getAttribute("href") == "#" + c)) }, { passive: true });
+        $("#top").onclick = () => scrollTo({ top: 0 });
+        // reveal + counters + bars
+        const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; const x = e.target; x.classList.add("in"); if (x.dataset.n) { let n = +x.dataset.n, v = 0; const i = setInterval(() => { v += Math.ceil(n / 40); if (v >= n) { v = n; clearInterval(i) } x.textContent = v + "+" }, 30) } if (x.dataset.w) x.style.width = x.dataset.w + "%"; io.unobserve(x) }), { threshold: .3 });
+        $$(".rv,[data-n],.fill").forEach(x => io.observe(x));
+        // form
+        $("#f").onsubmit = e => {
+            e.preventDefault(); const n = $("#fn").value.trim(), m = $("#fe").value.trim(), t = $("#fm").value.trim();
+            $("#e1").textContent = n ? "" : "Ismingizni kiriting"; $("#e2").textContent = /^\S+@\S+\.\S+$/.test(m) ? "" : "To‘g‘ri email kiriting"; $("#e3").textContent = t.length > 9 ? "" : "Kamida 10 ta belgi yozing";
+            if (n && /^\S+@\S+\.\S+$/.test(m) && t.length > 9) { $("#fs").innerHTML = '<span class="ok">✅ Rahmat! Xabaringiz qabul qilindi.</span>'; e.target.reset() }
+        };
+        // CV
+        $("#cv").onclick = async () => { try { const d = await claude.use("downloads"); if (!d) throw 0; const txt = "ABDUAZIZ OBLAYOROV\nFull-stack dasturchi & dizayner\naziz@example.com | +998 90 123 45 67\n\nTAJRIBA\n" + D.exp.map(e => e[0] + " — " + e[1]).join("\n") + "\n\nKO‘NIKMALAR\n" + [...D.sk1, ...D.sk2].map(s => s[0]).join(", "); await d.save({ filename: "Abduaziz-Oblayorov-CV.txt", data: new Blob([txt], { type: "text/plain" }) }) } catch (e) { alert("Yuklab olish bu yerda mavjud emas.") } };
+        // AI assistant
+        const SYS = "Sen Abduaziz Oblayorovning portfolio saytidagi AI yordamchisan. Faqat o‘zbek tilida (foydalanuvchi boshqa tilda yozsa — o‘sha tilda), qisqa va do‘stona javob ber. Ma’lumotlar: " + JSON.stringify({ haqida: "Toshkentdagi full-stack dasturchi va dizayner, 6 yil tajriba, 48 loyiha", ko_nikmalar: [...D.sk1, ...D.sk2], xizmatlar: D.svc.map(s => s[1]), loyihalar: D.pj.map(p => p[2]), tajriba: D.exp, narxlar: D.pr.map(p => p[0] + " " + p[1] + ": " + p[2]), aloqa: "aziz@example.com, +998 90 123 45 67, t.me/azizk", faq: D.fq }) + ". Bilmagan narsani o‘ylab topma, aloqa formasiga yo‘nalt.";
+        const KB = [[/narx|pul|qancha|price|\$/i, () => D.pr.map(p => p[0] + ": " + p[1] + " — " + p[2]).join("\n")], [/skill|ko.?nikma|biladi|texnolog/i, () => "Asosiy ko‘nikmalar: " + [...D.sk1, ...D.sk2].map(s => s[0]).join(", ")], [/loyiha|ish|project/i, () => "Loyihalar: " + D.pj.map(p => p[2]).join(", ")], [/tajriba|experience/i, () => D.exp.map(e => e[0] + " " + e[1]).join("\n")], [/aloqa|bog|email|telefon|contact/i, () => "📧 aziz@example.com\n📱 +998 90 123 45 67\n✈️ t.me/azizk"], [/xizmat|service/i, () => "Xizmatlar: " + D.svc.map(s => s[1]).join(", ")]];
+        const hist = []; let sample = null;
+        (async () => { try { sample = await claude.use("sample") } catch (e) { } })();
+        function add(c, t) { const d = document.createElement("div"); d.className = "m " + c; d.textContent = t; $("#msgs").append(d); $("#msgs").scrollTop = 1e9; return d }
+        add("b", "Salom! Men Abduazizning AI yordamchisiman 🤖 Ko‘nikmalar, loyihalar, narxlar haqida so‘rang.");
+        $("#sg").innerHTML = ["Qanday xizmatlar bor?", "Narxlar qancha?", "Qaysi texnologiyalarni biladi?", "Qanday bog‘lansam bo‘ladi?"].map(t => `<button>${t}</button>`).join("");
+        $("#sg").onclick = e => { if (e.target.tagName == "BUTTON") { $("#ci").value = e.target.textContent; send() } };
+        async function send() {
+            const q = $("#ci").value.trim(); if (!q) return; $("#ci").value = ""; add("u", q); hist.push({ role: "user", content: q }); const b = add("b", "…"); let a = "";
+            try { if (!sample) throw 0; const r = await sample([{ role: "user", content: SYS + "\n\nSuhbat:\n" + hist.map(h => h.role + ": " + h.content).join("\n") + "\n\nOxirgi savolga javob ber." }], { cache: false, modelTier: "quick", onText: ({ text }) => { b.textContent = text; $("#msgs").scrollTop = 1e9 } }); a = r.text }
+            catch (e) { const k = KB.find(([re]) => re.test(q)); a = k ? k[1]() : "Bu haqda aniq ma’lumotim yo‘q. Aloqa formasi orqali Abduazizga yozing 😊" }
+            b.textContent = a; hist.push({ role: "assistant", content: a })
+        }
+        $("#cs").onclick = send; $("#ci").onkeydown = e => { if (e.key == "Enter") send() };
+        $("#fab").onclick = () => $("#chat").classList.toggle("open"); $("#cx").onclick = () => $("#chat").classList.remove("open");
+    </script>
+</body>
+
+</html>
